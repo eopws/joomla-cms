@@ -2,23 +2,20 @@
 /**
  * Joomla! Content Management System
  *
- * @copyright  Copyright (C) 2005 - 2020 Open Source Matters, Inc. All rights reserved.
+ * @copyright  (C) 2006 Open Source Matters, Inc. <https://www.joomla.org>
  * @license    GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 namespace Joomla\CMS\Filesystem;
 
-defined('JPATH_PLATFORM') or die;
+\defined('JPATH_PLATFORM') or die;
 
-use Joomla\CMS\Filesystem\Wrapper\PathWrapper;
-use Joomla\CMS\Filesystem\Wrapper\FileWrapper;
 use Joomla\CMS\Crypt\Crypt;
 
-if (!defined('JPATH_ROOT'))
+if (!\defined('JPATH_ROOT'))
 {
 	// Define a string constant for the root directory of the file system in native format
-	$pathHelper = new PathWrapper;
-	define('JPATH_ROOT', $pathHelper->clean(JPATH_SITE));
+	\define('JPATH_ROOT', Path::clean(JPATH_SITE));
 }
 
 /**
@@ -135,7 +132,7 @@ class Path
 		$path = self::clean($path);
 		$mode = @ decoct(@ fileperms($path) & 0777);
 
-		if (strlen($mode) < 3)
+		if (\strlen($mode) < 3)
 		{
 			return '---------';
 		}
@@ -165,7 +162,7 @@ class Path
 	 * @return  string  A cleaned version of the path or exit on error.
 	 *
 	 * @since   1.7.0
-	 * @throws  Exception
+	 * @throws  \Exception
 	 */
 	public static function check($path)
 	{
@@ -176,8 +173,7 @@ class Path
 				sprintf(
 					'%s() - Use of relative paths not permitted',
 					__METHOD__
-				),
-				20
+				)
 			);
 		}
 
@@ -190,8 +186,7 @@ class Path
 					'%1$s() - Snooping out of bounds @ %2$s',
 					__METHOD__,
 					$path
-				),
-				20
+				)
 			);
 		}
 
@@ -207,18 +202,17 @@ class Path
 	 * @return  string  The cleaned path.
 	 *
 	 * @since   1.7.0
-	 * @throws  UnexpectedValueException
+	 * @throws  \UnexpectedValueException
 	 */
 	public static function clean($path, $ds = DIRECTORY_SEPARATOR)
 	{
-		if (!is_string($path) && !empty($path))
+		if (!\is_string($path) && !empty($path))
 		{
 			throw new \UnexpectedValueException(
 				sprintf(
 					'%s() - $path is not a string',
 					__METHOD__
-				),
-				20
+				)
 			);
 		}
 
@@ -230,7 +224,7 @@ class Path
 		}
 		// Remove double slashes and backslashes and convert all slashes and backslashes to DIRECTORY_SEPARATOR
 		// If dealing with a UNC path don't forget to prepend the path with a backslash.
-		elseif (($ds == '\\') && substr($path, 0, 2) == '\\\\')
+		elseif (($ds === '\\') && substr($path, 0, 2) === '\\\\')
 		{
 			$path = "\\" . preg_replace('#[/\\\\]+#', $ds, $path);
 		}
@@ -272,18 +266,17 @@ class Path
 
 		if ($dir)
 		{
-			$fileObject = new FileWrapper;
-			$test       = $dir . '/' . $tmp;
+			$test = $dir . '/' . $tmp;
 
 			// Create the test file
 			$blank = '';
-			$fileObject->write($test, $blank, false);
+			File::write($test, $blank, false);
 
 			// Test ownership
 			$return = (fileowner($test) == fileowner($path));
 
 			// Delete the test file
-			$fileObject->delete($test);
+			File::delete($test);
 
 			return $return;
 		}
@@ -304,7 +297,7 @@ class Path
 	public static function find($paths, $file)
 	{
 		// Force to array
-		if (!is_array($paths) && !($paths instanceof \Iterator))
+		if (!\is_array($paths) && !($paths instanceof \Iterator))
 		{
 			settype($paths, 'array');
 		}
@@ -332,7 +325,7 @@ class Path
 			 * non-registered directories are not accessible via directory
 			 * traversal attempts.
 			 */
-			if (file_exists($fullname) && substr($fullname, 0, strlen($path)) == $path)
+			if (file_exists($fullname) && substr($fullname, 0, \strlen($path)) === $path)
 			{
 				return $fullname;
 			}
