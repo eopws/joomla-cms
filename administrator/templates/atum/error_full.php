@@ -13,7 +13,6 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
-use Joomla\CMS\Router\Route;
 use Joomla\CMS\Uri\Uri;
 
 /** @var \Joomla\CMS\Document\ErrorDocument $this */
@@ -59,11 +58,11 @@ $logoBrandSmallAlt = empty($this->params->get('logoBrandSmallAlt')) && empty($th
 		->useStyle('template.user')
 		->addInlineStyle(':root {
 			--hue: ' . $matches[1] . ';
-			--atum-bg-light: ' . $this->params->get('bg-light', '#f0f4fb') . ';
-			--atum-text-dark: ' . $this->params->get('text-dark', '#495057') . ';
-			--atum-text-light: ' . $this->params->get('text-light', '#ffffff') . ';
-			--atum-link-color: ' . $this->params->get('link-color', '#2a69b8') . ';
-			--atum-special-color: ' . $this->params->get('special-color', '#001B4C') . ';
+			--template-bg-light: ' . $this->params->get('bg-light', '#f0f4fb') . ';
+			--template-text-dark: ' . $this->params->get('text-dark', '#495057') . ';
+			--template-text-light: ' . $this->params->get('text-light', '#ffffff') . ';
+			--template-link-color: ' . $this->params->get('link-color', '#2a69b8') . ';
+			--template-special-color: ' . $this->params->get('special-color', '#001B4C') . ';
 		}');
 
 // Override 'template.active' asset to set correct ltr/rtl dependency

@@ -90,15 +90,14 @@
 					type="groupedlist"
 					label="TPL_CASSIOPEIA_FONT_LABEL"
 					default="0"
-					parentclass="span-3"
 					>
 					<option value="0">JNONE</option>
 					<group label="TPL_CASSIOPEIA_FONT_GROUP_LOCAL">
-						<option value="fonts-local_roboto">Roboto (local)</option>
+						<option value="templates/cassiopeia/css/global/fonts-local_roboto.css">Roboto (local)</option>
 					</group>
 					<group label="TPL_CASSIOPEIA_FONT_GROUP_WEB">
-						<option value="fonts-web_fira-sans">Fira Sans (web)</option>
-						<option value="fonts-web_roboto+noto-sans">Roboto + Noto Sans (web)</option>
+						<option value="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100;300;400;700&amp;display=swap">Fira Sans (web)</option>
+						<option value="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;300;400;700&amp;family=Roboto:wght@100;300;400;700&amp;display=swap">Roboto + Noto Sans (web)</option>
 					</group>
 				</field>
 
@@ -107,7 +106,6 @@
 					type="note"
 					description="TPL_CASSIOPEIA_FONT_NOTE_TEXT"
 					class="alert alert-warning"
-					parentclass="span-3-inline"
 				/>
 
 				<field
@@ -115,7 +113,6 @@
 					type="list"
 					default="colors_standard"
 					label="TPL_CASSIOPEIA_COLOR_NAME_LABEL"
-					parentclass="span-3"
 					>
 					<option value="colors_standard">TPL_CASSIOPEIA_COLOR_NAME_STANDARD</option>
 					<option value="colors_alternative">TPL_CASSIOPEIA_COLOR_NAME_ALTERNATIVE</option>
